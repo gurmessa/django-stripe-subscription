@@ -21,6 +21,7 @@ from accounts.forms import UserRegistrationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('subscriptions.urls')),
     path(
         'accounts/register/',
         RegistrationView.as_view(
