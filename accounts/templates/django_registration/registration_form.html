@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title  %}
+Sign Up
+{% endblock %}
+
+{% block content %}
+
+<div class=" row mt-5">
+    <form class="form-signin col-6 offset-3" method="post">
+      <h1 class="h3 mb-3 font-weight-normal text-center">Please Register</h1>
+
+        {{form|crispy}}
+        {% csrf_token %}
+        
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+      <p class="mt-5 mb-3 text-muted text-center">&copy; 2022</p>
+    </form>
+  </div>
+
+
+
+{% endblock%}
+
+{% block contents %}
+    <div class="container">
+        <form method="post" action="">
+            {{form|crispy}}
+
+            {% csrf_token %}
+            <button class="btn btn-primary"> Register </button>
+        </form>
+    </div>
+
+{% endblock%}
