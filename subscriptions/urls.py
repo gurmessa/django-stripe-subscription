@@ -7,4 +7,5 @@ app_name = "subscriptions"
 
 urlpatterns = [
     path('success/', views.SuccessView.as_view(), name='success'),
+    path('cancel/', views.CancelView.as_view(), name='cancel'),
 ]
