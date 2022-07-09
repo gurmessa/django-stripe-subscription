@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Subscription
+{% endblock%}
+
+{% block content %}
+{% with subscription=request.user.subscription %}
+    <div class="container mt-5">
+        <table class="table table-striped">
+    
+            <tbody>
+              <tr>
+                <th scope="row">Status</th>
+                <td>{{ subscription.get_status_display }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Start Date</th>
+                <td>{{ subscription.start_date }}</td>
+              </tr>
+              <tr>
+                <th scope="row">End Date</th>
+                <td>{{ subscription.end_date }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Trial Start Date</th>
+                <td>{{ subscription.trial_start }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Trial End Date</th>
+                <td>{{ subscription.trial_end }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Current Period Start</th>
+                <td>{{ subscription.current_period_start }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Current Period End</th>
+                <td>{{ subscription.current_period_end }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+{% endwith %}
+{% endblock %}

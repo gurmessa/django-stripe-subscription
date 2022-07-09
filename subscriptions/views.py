@@ -22,6 +22,10 @@ class CancelView(LoginRequiredMixin, TemplateView):
     template_name = "subscriptions/cancel.html"
 
 
+class SubscriptionView(LoginRequiredMixin, TemplateView):
+    template_name = "subscriptions/subscription.html"
+
+
 class CreateCheckoutSessionView(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):

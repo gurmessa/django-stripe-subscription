@@ -9,6 +9,11 @@ urlpatterns = [
     path('success/', views.SuccessView.as_view(), name='success'),
     path('cancel/', views.CancelView.as_view(), name='cancel'),
     path(
+        'subscription/', 
+        views.SubscriptionView.as_view(), 
+        name='subscription'
+    ),
+    path(
         'checkout/', 
         views.CreateCheckoutSessionView.as_view(), 
         name="checkout"
