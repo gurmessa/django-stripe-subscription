@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+
+{% block title  %}
+Registration Complete
+{% endblock %}
+
 {% block content %}
-
-
   <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Welcome {{ request.user }}</h1>
@@ -22,7 +25,10 @@
                 <li>Then $49.99 per month</li>
                 <li>can cancel their subscription at any time.</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Start Trial</button>
+            <form method="post" action="">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-lg btn-block btn-primary">Start Trial</button>
+            </form>
             </div>
         </div>
     
