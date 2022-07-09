@@ -12,5 +12,6 @@ urlpatterns = [
         'checkout/', 
         views.CreateCheckoutSessionView.as_view(), 
         name="checkout"
-    )
+    ),
+    path('webhook/', views.stripe_webhook),
 ]
