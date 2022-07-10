@@ -14,3 +14,8 @@ class Subscription(models.Model):
     canceled_at = models.DateTimeField(null=True, blank=True)
     current_period_end = models.DateTimeField()
     current_period_start = models.DateTimeField()
+
+    @property
+    def is_active(self):
+        """check if the subscrition is active or on trial period"""
+        return self.status == 'active' or self.status == 'trialing'
