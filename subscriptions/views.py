@@ -10,8 +10,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse, HttpResponse
 from .models import Subscription
+from .mixins import SubscriptionRequiredMixin
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = "subscriptions/home.html"
 
 
 class SuccessView(LoginRequiredMixin, TemplateView):

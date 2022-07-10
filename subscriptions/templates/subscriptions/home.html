@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock%}
+
+{% block content %}
+
+    <div class="container">
+      <div class="jumbotron mt-3">
+        <h1>Welcome {{request.user.username}} </h1>
+        <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+
+        {% if request.user.subscription %}
+        <a class="btn btn-lg btn-primary" href="{% url 'subscriptions:subscription' %}" role="button">View Subscription &raquo;</a>
+        {% endif %}
+      </div>
+    </div>
+
+{% endblock %}
