@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.urls import reverse
 import stripe
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -9,8 +10,9 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse, HttpResponse
+from django.contrib import messages
 from .models import Subscription
-from .mixins import SubscriptionRequiredMixin
+from .mixins import SubscriptionRequiredMixin, ActiveSubscriptionRequiredMixin
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -52,6 +54,21 @@ class CreateCheckoutSessionView(LoginRequiredMixin, View):
             cancel_url=settings.DOMAIN_URL + '/cancel/',
         )
         return redirect(checkout_session.url)
+
+
+class CancelSubscriptionView(ActiveSubscriptionRequiredMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        stripe_subscription_id = request.user.subscription.subscription_id
+        try:
+            stripe.Subscription.delete(stripe_subscription_id)
+            messages.add_message(
+                request, messages.INFO, 'Cancelled Successfully.')
+        except Exception as e:
+            messages.add_message(
+                request, messages.ERROR, 'Something went wrong')
+
+        return redirect(reverse('subscriptions:home'))
 
 
 @csrf_exempt

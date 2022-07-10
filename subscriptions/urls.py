@@ -6,7 +6,7 @@ from subscriptions import views
 app_name = "subscriptions"
 
 urlpatterns = [
-    path('', views.HomeView.as_view(), name='cancel'),
+    path('', views.HomeView.as_view(), name='home'),
     path('success/', views.SuccessView.as_view(), name='success'),
     path('cancel/', views.CancelView.as_view(), name='cancel'),
     path(
@@ -18,6 +18,11 @@ urlpatterns = [
         'checkout/', 
         views.CreateCheckoutSessionView.as_view(), 
         name="checkout"
+    ),
+    path(
+        'cancel/subscription/', 
+        views.CancelSubscriptionView.as_view(), 
+        name="cancel-subscription"
     ),
     path('webhook/', views.stripe_webhook),
 ]

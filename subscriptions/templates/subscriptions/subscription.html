@@ -7,6 +7,20 @@ Subscription
 {% block content %}
 {% with subscription=request.user.subscription %}
     <div class="container mt-5">
+
+      {% if messages %}
+        <div class="row">
+        <div class="col-12">
+            {% for message in messages %}
+            <div class="alert alert-secondary" role="alert">
+                <p>{{ message }}</p>
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+      {% endif %}
+
         <table class="table table-striped">
     
             <tbody>
@@ -40,6 +54,15 @@ Subscription
               </tr>
             </tbody>
           </table>
+
+          {% if request.user.subscription.is_active %}
+            <form method="post" action="{% url 'subscriptions:cancel-subscription' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger float-right mt-3">
+                Cancel Subscription
+              </button>
+            </form>
+          {% endif%}
     </div>
 {% endwith %}
 {% endblock %}
