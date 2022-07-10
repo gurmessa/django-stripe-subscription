@@ -11,3 +11,15 @@ class SubscriptionRequiredMixin(LoginRequiredMixin):
 
         return super().dispatch(request, *args, **kwargs)
 
+
+class ActiveSubscriptionRequiredMixin(LoginRequiredMixin):
+    """Verify that the user has an active subscription."""
+
+    def dispatch(self, request, *args, **kwargs):
+        if not hasattr(request.user, 'subscription'):
+            return HttpResponseRedirect('/')
+        elif not request.user.subscription.is_active:
+            return HttpResponseRedirect('/')
+
+        return super().dispatch(request, *args, **kwargs)
+
