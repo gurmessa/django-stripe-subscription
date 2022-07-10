@@ -27,7 +27,7 @@ class CancelView(LoginRequiredMixin, TemplateView):
     template_name = "subscriptions/cancel.html"
 
 
-class SubscriptionView(LoginRequiredMixin, TemplateView):
+class SubscriptionView(SubscriptionRequiredMixin, TemplateView):
     template_name = "subscriptions/subscription.html"
 
 
