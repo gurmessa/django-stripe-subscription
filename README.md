@@ -1,4 +1,4 @@
-# Challenge 2 
+# Django stripe subscription
 
 
 ### install prerequisites 
